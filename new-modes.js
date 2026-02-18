@@ -66,12 +66,12 @@ function renderMbtiQuestion(c) {
     h += '<div class="level-progress" style="margin-bottom:25px">';
     h += '<div class="level-bar" style="width:' + progress + '%"></div></div>';
     h += '<div style="background:var(--glass);padding:25px;border-radius:15px;margin-bottom:25px">';
-    h += '<p style="text-align:center;font-size:1.3rem;margin-bottom:5px">' + q.question + '</p></div>';
+    h += '<p style="text-align:center;font-size:1.3rem;margin-bottom:5px">' + escapeHtml(q.question) + '</p></div>';
     h += '<div style="display:grid;gap:12px">';
     h += '<button class="game-btn" id="mbtiOptA" style="text-align:left;padding:18px 24px">';
-    h += 'A. ' + q.optionA + '</button>';
+    h += 'A. ' + escapeHtml(q.optionA) + '</button>';
     h += '<button class="game-btn secondary" id="mbtiOptB" style="text-align:left;padding:18px 24px">';
-    h += 'B. ' + q.optionB + '</button>';
+    h += 'B. ' + escapeHtml(q.optionB) + '</button>';
     h += '</div>';
     c.innerHTML = h;
 
@@ -174,8 +174,9 @@ var swipeStudy = [];
 function showSwipeLearn(c) {
     var words = getWords();
     if (words.length < 5) {
-        c.innerHTML = '<p style="text-align:center">Need at least 5 words.</p>';
-        return;
+        var allWords = [];
+        for (var cat in wordDatabase) { allWords = allWords.concat(wordDatabase[cat]); }
+        words = allWords;
     }
     swipeWords = shuffle(words).slice(0, 20);
     swipeIndex = 0;
@@ -887,7 +888,8 @@ function renderSituationPicker(c) {
         h += '<div style="font-size:2.5rem;margin-bottom:8px">' + icon + '</div>';
         h += '<div style="font-weight:bold">' + escapeHtml(label) + '</div>';
         h += '<div style="font-size:0.8rem;color:rgba(255,255,255,0.5)">';
-        h += situations[key].length + ' phrases</div></div>';
+        var phraseCount = Array.isArray(situations[key]) ? situations[key].length : (situations[key].phrases ? situations[key].phrases.length : 0);
+        h += phraseCount + ' phrases</div></div>';
     }
     h += '</div>';
 
@@ -900,7 +902,7 @@ function renderSituationPicker(c) {
             sitCurrentSituation = sit;
             var source = (typeof situationalPhrases !== "undefined" && situationalPhrases[sit])
                 ? situationalPhrases[sit] : defaultSituationalPhrases[sit];
-            sitPhrases = source || [];
+            sitPhrases = Array.isArray(source) ? source : (source && source.phrases ? source.phrases : []);
             sitIndex = 0;
             gameState.gamesPlayed++;
             saveProgress();

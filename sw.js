@@ -1,5 +1,5 @@
-var CACHE_NAME="kpop-korean-v8";
-var urlsToCache=["./","./index.html","./manifest.json","./connection-map.js","./content-data.js","./new-modes.js","./system-features.js","./external-integrations.js"];
+var CACHE_NAME="kpop-korean-v9";
+var urlsToCache=["./","./index.html","./manifest.json","./connection-map.js","./content-data.js","./new-modes.js","./system-features.js","./external-integrations.js","./more-content.js","./more-modes.js"];
 
 self.addEventListener("install",function(e){e.waitUntil(caches.open(CACHE_NAME).then(function(cache){return cache.addAll(urlsToCache)}))});
 

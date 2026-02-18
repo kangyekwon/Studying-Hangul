@@ -1,4 +1,4 @@
-var CACHE_NAME="kpop-korean-v4";
+var CACHE_NAME="kpop-korean-v5";
 var urlsToCache=["./","./index.html","./manifest.json","./connection-map.js"];
 
 self.addEventListener("install",function(e){e.waitUntil(caches.open(CACHE_NAME).then(function(cache){return cache.addAll(urlsToCache)}))});

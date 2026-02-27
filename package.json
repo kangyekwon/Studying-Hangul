@@ -1,0 +1,48 @@
+{
+  "name": "kpop-korean-learning",
+  "version": "1.0.0",
+  "description": "Learn Korean with fun K-POP themed games! Flashcards, quizzes, memory games and more.",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "analyze": "vite-bundle-visualizer",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "lint": "eslint *.js",
+    "lint:fix": "eslint *.js --fix",
+    "format": "prettier --write \"*.{js,html,css,json,md}\"",
+    "serve": "npx http-server -c-1"
+  },
+  "keywords": [
+    "Korean",
+    "K-POP",
+    "language learning",
+    "hangul",
+    "vocabulary",
+    "PWA"
+  ],
+  "author": "K-POP Korean Learning",
+  "license": "MIT",
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "^3.2.5",
+    "vite": "^5.0.0",
+    "vite-plugin-pwa": "^0.19.0",
+    "terser": "^5.27.0",
+    "vite-bundle-visualizer": "^1.0.0"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.9.3",
+    "hangul-js": "^0.2.6",
+    "chart.js": "^4.4.7",
+    "qrcode-generator": "^1.4.4",
+    "localforage": "^1.10.0"
+  }
+}

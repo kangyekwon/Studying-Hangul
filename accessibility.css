@@ -1,0 +1,448 @@
+/**
+ * Accessibility Styles
+ * WCAG 2.1 Level AA 준수를 위한 접근성 스타일
+ */
+
+/* ========================================
+   1. 스크린 리더 전용 클래스
+   ======================================== */
+
+/**
+ * 스크린 리더 전용 텍스트
+ * 화면에는 보이지 않지만 스크린 리더가 읽을 수 있음
+ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/**
+ * 포커스 시에만 표시되는 스크린 리더 텍스트
+ * Skip links 등에 사용
+ */
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* ========================================
+   2. 포커스 스타일 (WCAG 2.4.7)
+   ======================================== */
+
+/**
+ * 모든 포커스 가능한 요소에 명확한 포커스 표시
+ * 명도 대비 3:1 이상 (WCAG 2.1 AA)
+ */
+*:focus {
+  outline: 3px solid var(--neon-pink, #ff2d95);
+  outline-offset: 2px;
+  transition: outline 0.2s ease;
+}
+
+/**
+ * 버튼 포커스 스타일
+ */
+button:focus,
+.game-btn:focus,
+.nav-btn:focus,
+.cat-btn:focus,
+.power-btn:focus {
+  outline: 3px solid var(--neon-pink, #ff2d95);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(255, 45, 149, 0.2),
+              0 0 20px rgba(255, 45, 149, 0.4);
+  transform: translateY(-2px);
+}
+
+/**
+ * 퀴즈 옵션 포커스 스타일
+ */
+.quiz-option:focus {
+  outline: 3px solid var(--neon-cyan, #00f5d4);
+  outline-offset: 2px;
+  background: rgba(0, 245, 212, 0.1);
+  box-shadow: 0 0 0 5px rgba(0, 245, 212, 0.2),
+              0 0 20px rgba(0, 245, 212, 0.3);
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+/**
+ * 플래시카드 포커스 스타일
+ */
+.flashcard:focus {
+  outline: 3px solid var(--neon-purple, #9d4edd);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(157, 78, 221, 0.2),
+              0 0 30px rgba(157, 78, 221, 0.4);
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+/**
+ * 메모리 카드 포커스 스타일
+ */
+.memory-card:focus {
+  outline: 3px solid var(--neon-blue, #00d4ff);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(0, 212, 255, 0.2),
+              0 0 20px rgba(0, 212, 255, 0.3);
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/**
+ * 입력 필드 포커스 스타일
+ */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid var(--neon-cyan, #00f5d4);
+  outline-offset: 2px;
+  border-color: var(--neon-cyan, #00f5d4);
+  box-shadow: 0 0 0 5px rgba(0, 245, 212, 0.2),
+              0 0 15px rgba(0, 245, 212, 0.3);
+}
+
+/* ========================================
+   3. 키보드 네비게이션 표시
+   ======================================== */
+
+/**
+ * 키보드로 탐색 중임을 나타내는 클래스
+ */
+body.keyboard-navigation *:focus {
+  outline: 3px solid var(--neon-pink, #ff2d95) !important;
+  outline-offset: 3px !important;
+}
+
+/**
+ * 마우스 사용 시 포커스 링 숨기기 (선택적)
+ * 키보드 사용자를 위해 기본적으로 표시
+ */
+body.mouse-navigation *:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ========================================
+   4. 접근성 향상 유틸리티
+   ======================================== */
+
+/**
+ * Skip to main content 링크
+ */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--neon-pink, #ff2d95);
+  color: #fff;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+  font-weight: bold;
+  z-index: 10000;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #fff;
+  outline-offset: -3px;
+}
+
+/**
+ * ARIA live region (스크린 리더 알림)
+ */
+#a11y-announcer {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ========================================
+   5. 색상 대비 개선
+   ======================================== */
+
+/**
+ * 텍스트 명도 대비 최소 4.5:1 (WCAG 2.1 AA)
+ */
+.text-high-contrast {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/**
+ * 배경과 텍스트 대비 보장
+ */
+.quiz-option,
+.game-btn,
+.nav-btn,
+.cat-btn {
+  /* 기본 텍스트가 흰색이므로 배경 어두움 보장 */
+  min-height: 44px; /* 터치 타겟 최소 크기 (WCAG 2.5.5) */
+}
+
+/* ========================================
+   6. 비활성화 상태 표시
+   ======================================== */
+
+/**
+ * 비활성화된 요소는 명확히 구분
+ */
+button:disabled,
+.power-btn:disabled,
+.quiz-option.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(50%);
+}
+
+button:disabled:focus,
+.power-btn:disabled:focus {
+  outline: 2px dashed rgba(255, 255, 255, 0.3);
+  box-shadow: none;
+}
+
+/* ========================================
+   7. 모션 감소 지원 (WCAG 2.3.3)
+   ======================================== */
+
+/**
+ * prefers-reduced-motion 설정 시 애니메이션 감소
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .flashcard,
+  .quiz-option,
+  .memory-card {
+    transition: none !important;
+  }
+}
+
+/* ========================================
+   8. 터치 타겟 크기 (WCAG 2.5.5)
+   ======================================== */
+
+/**
+ * 모든 인터랙티브 요소는 최소 44x44px
+ */
+button,
+.game-btn,
+.nav-btn,
+.cat-btn,
+.power-btn,
+.quiz-option,
+.memory-card {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 16px;
+}
+
+/* 작은 버튼 예외 처리 */
+.settings-btn {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   9. 고대비 모드 지원
+   ======================================== */
+
+/**
+ * Windows 고대비 모드 지원
+ */
+@media (prefers-contrast: high) {
+  *:focus {
+    outline-width: 4px;
+    outline-offset: 3px;
+  }
+
+  .quiz-option,
+  .game-btn,
+  .nav-btn {
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  button:disabled {
+    border-style: dashed;
+  }
+}
+
+/* ========================================
+   10. 다크모드 접근성 (이미 다크모드이지만 추가 개선)
+   ======================================== */
+
+/**
+ * 텍스트 가독성 향상
+ */
+body {
+  /* 기본 텍스트가 흰색(#fff)이고 배경이 어두우므로 대비 충분 */
+  color: #ffffff;
+  background-color: #0a0a1a; /* --bg-dark */
+}
+
+/* 작은 텍스트는 더 높은 대비 필요 */
+.stat-label,
+.flashcard-romanization,
+p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ========================================
+   11. 포커스 순서 시각적 표시
+   ======================================== */
+
+/**
+ * 현재 포커스 위치를 명확히 표시
+ */
+.quiz-option[tabindex="0"],
+.memory-card[tabindex="0"],
+.nav-btn[tabindex="0"] {
+  position: relative;
+}
+
+.quiz-option[tabindex="0"]:focus::before,
+.memory-card[tabindex="0"]:focus::before {
+  content: '›';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: var(--neon-pink, #ff2d95);
+  animation: pulse 1s ease infinite;
+}
+
+/* ========================================
+   12. 반응형 접근성
+   ======================================== */
+
+/**
+ * 모바일에서도 터치 타겟 크기 유지
+ */
+@media (max-width: 768px) {
+  button,
+  .game-btn,
+  .quiz-option,
+  .nav-btn {
+    min-height: 48px; /* 모바일에서 더 큰 타겟 */
+    font-size: 1rem;
+  }
+
+  .power-btn {
+    min-width: 60px;
+    padding: 10px 12px;
+  }
+}
+
+/* ========================================
+   13. 접근성 상태 표시
+   ======================================== */
+
+/**
+ * ARIA states 시각적 피드백
+ */
+[aria-pressed="true"] {
+  background: rgba(255, 45, 149, 0.3);
+  border-color: var(--neon-pink, #ff2d95);
+}
+
+[aria-selected="true"] {
+  background: rgba(0, 245, 212, 0.2);
+  border-color: var(--neon-cyan, #00f5d4);
+}
+
+[aria-expanded="true"]::after {
+  content: ' ▼';
+}
+
+[aria-expanded="false"]::after {
+  content: ' ▶';
+}
+
+[aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ========================================
+   14. 키보드 단축키 힌트
+   ======================================== */
+
+/**
+ * 키보드 단축키를 시각적으로 표시 (선택적)
+ */
+.keyboard-hint {
+  position: relative;
+}
+
+.keyboard-hint::after {
+  content: attr(data-keyboard-hint);
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--neon-cyan, #00f5d4);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.keyboard-hint:focus::after {
+  opacity: 1;
+}
+
+/* ========================================
+   15. 접근성 테스트용 클래스
+   ======================================== */
+
+/**
+ * 접근성 문제 디버깅용 (개발 중에만 사용)
+ */
+.a11y-debug [role] {
+  outline: 2px dashed yellow;
+}
+
+.a11y-debug [aria-label]::before {
+  content: '🔊 ' attr(aria-label);
+  position: absolute;
+  background: rgba(255, 215, 0, 0.9);
+  color: #000;
+  padding: 2px 4px;
+  font-size: 0.7rem;
+  pointer-events: none;
+  z-index: 10000;
+}

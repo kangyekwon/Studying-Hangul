@@ -139,7 +139,7 @@ var advancedProverbs = [
 // ============================================================
 // 4. Grammar Patterns (30 entries)
 // ============================================================
-var grammarPatterns = [
+var advancedGrammarPatterns = [
   {pattern:"-아/어서",level:"beginner",english:"because / and then",explanation:"Connects cause-result or sequential actions",examples:[{korean:"배고파서 밥을 먹었어요",english:"I ate because I was hungry"},{korean:"만나서 반갑습니다",english:"Nice to meet you"}],quiz:{q:"피곤___서 일찍 잤어요",a:"해"}},
   {pattern:"-(으)ㄹ 수 있다/없다",level:"beginner",english:"can / cannot",explanation:"Expresses ability or possibility",examples:[{korean:"한국어를 할 수 있어요",english:"I can speak Korean"},{korean:"수영할 수 없어요",english:"I cannot swim"}],quiz:{q:"요리___ 수 있어요?",a:"할"}},
   {pattern:"-고 싶다",level:"beginner",english:"want to",explanation:"Expresses desire to do something",examples:[{korean:"먹고 싶어요",english:"I want to eat"},{korean:"한국에 가고 싶어요",english:"I want to go to Korea"}],quiz:{q:"배우___ 싶어요",a:"고"}},
@@ -423,8 +423,8 @@ function showGrammarLesson(c) {
 /** Builds grammar list HTML for a given level filter. @param {string} level @returns {string} */
 function buildGramList(level) {
   var h = '<div style="display:grid;gap:8px">';
-  for (var i = 0; i < grammarPatterns.length; i++) {
-    var g = grammarPatterns[i];
+  for (var i = 0; i < advancedGrammarPatterns.length; i++) {
+    var g = advancedGrammarPatterns[i];
     if (level !== "all" && g.level !== level) continue;
     var lc = g.level === "beginner" ? "#00f5d4" : g.level === "advanced" ? "#ff2d95" : "#9d4edd";
     h += '<button class="game-btn" data-action="gramSelect" data-idx="' + i + '" style="text-align:left;padding:12px 16px">';
@@ -436,7 +436,7 @@ function buildGramList(level) {
 
 /** Renders grammar pattern detail with examples and quiz. @param {Element} c @param {number} idx */
 function renderGrammarDetail(c, idx) {
-  var g = grammarPatterns[idx];
+  var g = advancedGrammarPatterns[idx];
   var h = '<h2 class="game-title">' + escapeHtml(g.pattern) + '</h2>';
   h += '<div style="background:var(--glass);padding:20px;border-radius:15px;margin-bottom:15px">';
   h += '<p style="font-size:1.1rem;color:var(--neon-cyan)">' + escapeHtml(g.english) + '</p>';

@@ -717,7 +717,7 @@ function nextGrammarQuestion(c) {
         return;
     }
 
-    var pool = (typeof grammarPatterns !== "undefined" && grammarPatterns.length > 0) ? grammarPatterns : defaultGrammarPatterns;
+    var pool = defaultGrammarPatterns;
     var available = shuffle(pool);
     grammarCurrent = available[grammarRound % available.length];
     grammarAnswered = false;

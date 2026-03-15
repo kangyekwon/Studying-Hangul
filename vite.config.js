@@ -24,6 +24,8 @@ export default defineConfig({
         ]
       },
       workbox: {
+        skipWaiting: true,
+        clientsClaim: true,
         // 캐싱 전략 설정
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
 
